@@ -1,0 +1,31 @@
+Name:           language-c-uniplate
+Version:        0.1
+Cabal-Version:  >= 1.2
+Build-Type:     Simple
+License:        BSD3
+License-File:   LICENSE
+Copyright:      LICENSE
+Author:         Aaron Tomb <aarontomb@gmail.com>
+Maintainer:     aarontomb@gmail.com
+Stability:      experimental
+Synopsis:       Uniplate instances for language-c
+Description:    Uniplate instances for language-c
+Category:       Language
+
+Flag splitBase
+    Description: Choose the new smaller, split-up base package.
+
+Library
+    Extensions:     FlexibleInstances,
+                    MultiParamTypeClasses
+
+    Build-Depends:  language-c >= 0.4 && < 0.5,
+                    uniplate
+
+    if flag(splitBase)
+        Build-Depends: base >= 3 && < 5
+    else
+        Build-Depends: base < 3
+
+    Hs-Source-Dirs: .
+    Exposed-Modules: Language.C.Syntax.UniplateInstances
